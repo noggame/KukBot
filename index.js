@@ -23,7 +23,5 @@ bot01.on('message', (message) => {
     }
 });
 
-bot01.login(process.env.TESTBOT_TOKEN);     // Test server
-// bot01.login(process.env.KUKBOT_TOKEN); // kuk channel server
-// MzM1MDEyNDcwODEwNzM4Njg4.DEjkSA.LmMW26qORbF8eJ2OcJ-IwGBY8Nc
-// bot01.login('MzMzOTQ2NjYyNjk3NTY2MjA5.DEUITg.2DLBfUhSKWpVChAEKC5eOP5p1DQ');   // Kuk server
+// bot01.login(process.env.TESTBOT_TOKEN);     // Test server
+// bot01.login(process.env.KUKBOT_TOKEN); // kuk channel
