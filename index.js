@@ -24,4 +24,4 @@ bot01.on('message', (message) => {
 });
 
 // bot01.login(process.env.TESTBOT_TOKEN);     // Test server
-// bot01.login(process.env.KUKBOT_TOKEN); // kuk channel
+bot01.login(process.env.KUKBOT_TOKEN); // kuk channel
