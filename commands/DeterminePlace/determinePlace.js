@@ -56,31 +56,42 @@ module.exports = class determinePlace extends Commando.Command{
         }*/
 
 
-        if(args.map == 'er' || args.map == 'mr'){
+        if(args.map == 'er' || args.map == 'mr' || args.map == 'sn'){
             
-            let map_row = ['A', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
-            let map_col = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-            
-            let temp_row = Math.floor(Math.random()*map_row.length);
-            let temp_col = Math.floor(Math.random()*map_col.length);
-            let temp_coor = map_row[temp_row] + map_col[temp_col];
-            
+            let map_row;
+            let map_col;
             let except_coor;
             let mapFileDIR;
-
-            // 
+            
             if(args.map == 'er'){
+                map_row = ['A', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
+                map_col = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
                 except_coor = ['AA', 'AB', 'AC', 'AD', 'AG', 'AH', 'JA', 'JH', 'KA', 'KG', 'KH'
                 , 'LA', 'NH', 'MA', 'MH', 'NH', 'OH', 'PA', 'PB', 'PC', 'PF', 'PG', 'PH'];
                 mapFileDIR = "./Images/ERANGEL/ERANGEL_";
             }
             else if(args.map == 'mr'){
+                map_row = ['A', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
+                map_col = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
                 except_coor = ['AE', 'AF', 'AG', 'AH', 'JA', 'JB', 'MH', 'NH', 'OH', 'PG', 'PH'];
-                mapFileDIR = "./Images/MIRAMAR/MIRAMAR_"
+                mapFileDIR = "./Images/MIRAMAR/MIRAMAR_";
+            }
+            else if(args.map == 'sn'){
+                map_row = ['A', 'F', 'G', 'H'];
+                map_col = ['A', 'B', 'C', 'D'];
+
+                except_coor = ['AA', 'AF', 'AG', 'AH', 'JA', 'JB', 'MH', 'NH', 'OH', 'PG', 'PH'];
+                mapFileDIR = "./Images/SANHOK/SANHOK_";
             }
             else{
                 message.reply("undefined map");
             }
+
+            let temp_row = Math.floor(Math.random()*map_row.length);
+            let temp_col = Math.floor(Math.random()*map_col.length);
+            let temp_coor = map_row[temp_row] + map_col[temp_col];
             
             // 생성한 좌표가 except_coor에 해당하는지 검사
             function isContain(element, ary){
@@ -107,17 +118,18 @@ module.exports = class determinePlace extends Commando.Command{
 
 
             // AA~PH 좌표 맵 이미지 생성
-            /*for(var row in map_row)
+            /*for(let row in map_row)
             {
-                for(var col in map_col)
+                for(let col in map_col)
                 {
-                                // Map Images
-                    var ERANGEL = images("./Images/ERANGEL.png").size(2688, 2688);
-                    var MIRAMAR = images("./Images/MIRAMAR.jpg").size(2688, 2688);
-                    var RECTANGLE = images("./Images/RECTANGLE.png").size(336, 336);
+                    // Map Images
+                    // var ERANGEL = images("./Images/ERANGEL.png").size(2688, 2688);
+                    // var MIRAMAR = images("./Images/MIRAMAR.jpg").size(2688, 2688);
+                    let SANHOK = images("./Images/SANHOK.jpg").size(1344,1344);
+                    let RECTANGLE = images("./Images/RECTANGLE.png").size(336, 336);
 
-                    var outputFile = "./Images/ERANGEL/ERANGEL_" + map_row[row].toString() + map_col[col].toString() + ".jpg";
-                    images(ERANGEL).draw(images(RECTANGLE), row*336, col*336).save(outputFile);
+                    let outputFile = mapFileDIR + map_row[row].toString() + map_col[col].toString() + ".jpg";
+                    images(SANHOK).draw(images(RECTANGLE), row*336, col*336).save(outputFile);
                 }
             }*/
 
