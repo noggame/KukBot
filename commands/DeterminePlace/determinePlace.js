@@ -79,10 +79,12 @@ module.exports = class determinePlace extends Commando.Command{
                 mapFileDIR = "./Images/MIRAMAR/MIRAMAR_";
             }
             else if(args.map == 'sn'){
-                map_row = ['A', 'F', 'G', 'H'];
-                map_col = ['A', 'B', 'C', 'D'];
+                map_row = ['A1', 'A2', 'J1', 'J2', 'K1', 'K2', 'L1', 'L2']; // (A, J, K, L)/2
+                map_col = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2']; // (A, B, C, D)/2
 
-                except_coor = ['AA', 'AF', 'AG', 'AH', 'JA', 'JB', 'MH', 'NH', 'OH', 'PG', 'PH'];
+                except_coor = ['A1A1', 'A1A2', 'A1B1', 'A1B2', 'A1C1', 'A1C2', 'A1D1', 'A1D2'
+                ,'A2A1', 'A2A2', 'A2D1', 'A2D2', 'J1A1', 'J2A1', 'K1A1', 'L1A1', 'L1D2'
+                ,'L2A1', 'L2A2', 'L2C1', 'L2C2', 'L2D1', 'L2D2'];
                 mapFileDIR = "./Images/SANHOK/SANHOK_";
             }
             else{
@@ -125,7 +127,7 @@ module.exports = class determinePlace extends Commando.Command{
                     // Map Images
                     // var ERANGEL = images("./Images/ERANGEL.png").size(2688, 2688);
                     // var MIRAMAR = images("./Images/MIRAMAR.jpg").size(2688, 2688);
-                    let SANHOK = images("./Images/SANHOK.jpg").size(1344,1344);
+                    let SANHOK = images("./Images/SANHOK.jpg").size(2688,2688);
                     let RECTANGLE = images("./Images/RECTANGLE.png").size(336, 336);
 
                     let outputFile = mapFileDIR + map_row[row].toString() + map_col[col].toString() + ".jpg";
