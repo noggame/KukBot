@@ -1,28 +1,26 @@
 {
-  "name": "KukBot",
+  "name": "kukbot",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "discord.js-commando": "^0.10.0",
+    "jimp": "^0.6.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/noggame/KukBot.git"
+    "url": "git+https://github.com/noggame/kukbot.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.com/noggame/KukBot/issues"
+    "url": "https://github.com/noggame/kukbot/issues"
   },
-  "homepage": "https://gitlab.com/noggame/KukBot#README",
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "discord.js": "^11.2.1",
-    "discord.js-commando": "^0.9.0",
-    "images": "^3.0.1",
-    "phantom": "^4.0.12",
-    "request": "^2.85.0"
-  }
+  "homepage": "https://github.com/noggame/kukbot#readme",
+  "description": ""
 }

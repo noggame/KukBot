@@ -12,8 +12,6 @@ build_stage :
  - npm install --save
  - npm install discord.js --save
  - npm install discord.js-commando --save
- - npm install request --save
- - npm install cheerio --save
- - ls -a
+ - npm install jimp --save
  - node ./index.js
  
