@@ -45,9 +45,10 @@ module.exports = class determinePlace extends commando.Command{
                 map_row = ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
                 map_col = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-                except_coor = ['IA', 'IB', 'IC', 'ID', 'IE', 'IG', 'IH',
-                'JA', 'JH', 'KA', 'KH', 'LA', 'LH', 'NH',
-                'MA', 'MH', 'NH', 'OH', 'PA', 'PB', 'PC', 'PF', 'PG', 'PH'];
+                except_coor = ['IA', 'IB', 'IC', 'ID', 'IE', 'IH',
+                'JA', 'JC', 'JE', 'JH', 'KA', 'KH',
+                'LA', 'LH', 'NH', 'OA', 'OC', 'OH',
+                'PA', 'PB', 'PC', 'PD', 'PE', 'PF', 'PG', 'PH'];
             }
             else if(args.map == 'mr'){
                 map_name = 'MIRAMAR';
