@@ -55,7 +55,10 @@ module.exports = class determinePlace extends commando.Command{
                 map_row = ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'];
                 map_col = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 
-                except_coor = ['AE', 'AF', 'AG', 'AH', 'JA', 'JB', 'MH', 'NH', 'OH', 'PG', 'PH'];
+                except_coor = ['IA', 'IB', 'IC', 'IE', 'JB', 'JD', 'JH',
+                'KA', 'KH', 'LA', 'LG', 'LH', 'MA', 'MC', 'ME', 'MF',
+                'NA', 'ND', 'NF', 'NG', 'OA', 'OC', 'OD', 'OH',
+                'PE', 'PF', 'PG', 'PH'];
             }
             else if(args.map == 'sn'){
                 map_name = 'SANHOK';
