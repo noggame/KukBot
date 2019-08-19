@@ -13,6 +13,6 @@ module.exports = class determinePlace extends commando.Command{
     }
 
     async run(message){
-        message.reply('1.0.1 (last updated : 2019-08-19'));
+        message.reply('1.0.0 (last updated : 2019-08-19'));
     }
 }
