@@ -2,10 +2,10 @@ const Commando = require('discord.js-commando');
 const https = require('https');
 const MAX_SEARCHED_MATCH = 5;
 
-let options = {
-    host : 'api.playbattlegrounds.com',
+let connection = {
+    host : 'api.pubg.com',
     // port : "8080",
-    path : '/shards/pc-krjp/players?filter[playerNames]=lnwoo', // default
+    path : '/shards/steam/players?filter[playerNames]=KukDas', // default
     method : 'GET',
     // method : 'POST' / 'GET' / 'PUT' / 'DELETE'
     headers : {
@@ -14,9 +14,9 @@ let options = {
     }
 }
 
-var loadUser = new Promise((resolve, reject)=>{
-    if(options != null){
-        var req = https.request(options, (res)=>{
+var loadUserData = new Promise((resolve, reject)=>{
+    if(connection != null){
+        var req = https.request(connection, (res)=>{
             let rawData='';
             res.on('data', (chunk)=>{
                 rawData+=chunk;
@@ -30,7 +30,7 @@ var loadUser = new Promise((resolve, reject)=>{
         }).end();
     }
     else{
-        reject(error("[undefined header]", options));
+        reject(error("[undefined header]", connection));
     }
 });
 
@@ -76,20 +76,28 @@ module.exports = class RandomNumber extends Commando.Command{
         pc-as - Asia */
         let region = args.server;
         let playerName = args.id;
-        // console.log(region + ", " + playerName);
 
-        options.path = '/shards/pc-'+region+'/players?filter[playerNames]='+playerName;
+        // connection.path = '/shards/pc-'+region+'/players?filter[playerNames]='+playerName;
+        connection.path = '/shards/steam/players?filter[playerNames]='+playerName;
+        
+        // loadUserData.then((user)=>{
+        //     // console.log(user.data[0]);
+        //     let matches = user.data[0].relationships.matches.data;
+        //     console.log(matches);
+        // })
 
-        loadUser.then((user)=>{
+        
+        loadUserData.then((user)=>{
             let promises = [];
         
             let matches = user.data[0].relationships.matches.data;
         
-            for(let i=0; i<MAX_SEARCHED_MATCH && i<matches.length; i++){
-                options.path = '/shards/pc-'+region+'/matches/'+matches[i].id;
+            // MAX_SEARCHED_MATCH
+            for(let i=0; i<2 && i<matches.length; i++){
+                connection.path = '/shards/steam/matches/'+matches[i].id;
         
                 var prom_req = new Promise((resolve, reject)=>{
-                        https.request(options, (res)=>{
+                        https.request(connection, (res)=>{
                         let rawData='';
                         res.on('data', (chunk)=>{
                             rawData+=chunk;
@@ -130,14 +138,15 @@ module.exports = class RandomNumber extends Commando.Command{
                         }
                     }
 
-                    // store map info.
+                    // save match info.
                     matchMessage = "\n[" + matchAttr.gameMode + " - " + matchAttr.mapName + '] - ' + matchAttr.createdAt + ')\n';
                     
                     // search player info.
                     for(let p in participants){
                         if(participants[p].attributes.stats.name == playerName){
                             playerStats.push(participants[p]);
-                            console.log(participants[p].attributes.stats);
+                            console.log(participants[p]);
+                            // console.log(participants[p].attributes.stats);
                         }
                     }
                 }
