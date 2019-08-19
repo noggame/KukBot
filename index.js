@@ -7,7 +7,8 @@ client.registry
     .registerGroups([
         ['random', 'Random'],
         ['profile', 'Profile'],
-        ['map', 'Map']
+        ['map', 'Map'],
+        ['logs', 'Logs']
     ])
     .registerDefaults()
     .registerCommandsIn(__dirname + '/commands');
