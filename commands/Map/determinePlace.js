@@ -29,7 +29,7 @@ module.exports = class determinePlace extends commando.Command{
 
     async run(message, args){
 
-        const imagePath = './resource/images';
+        const baseImagePath = './resource/images/base';
         const RECTANGLE_SIZE = 336;
         
         let MAP_SIZE = RECTANGLE_SIZE*8;
@@ -88,6 +88,8 @@ module.exports = class determinePlace extends commando.Command{
         }
 
 
+        let mapPath = baseImagePath + '/' + map_name + '.jpg';
+
         let temp_row = Math.floor(Math.random()*map_row.length);
         let temp_col = Math.floor(Math.random()*map_col.length);
         let temp_coor = map_row[temp_row] + map_col[temp_col];
@@ -103,22 +105,50 @@ module.exports = class determinePlace extends commando.Command{
 
         let selectedRow = map_row[temp_row];
         let selectedCol = map_col[temp_col];
-        let mapPath = imagePath + '/' + map_name + '.jpg';
 
-        // 선택된 좌표를 기준으로 이미지 합친 후 메시지로 출력
-        Jimp.read(mapPath).then(loadMap=>{
-            return loadMap.resize(MAP_SIZE, MAP_SIZE);
-        }).then(resizedMap =>{
-            Jimp.read(imagePath + '/RED_RECTANGLE.png').then(rec=>{
-                return rec.resize(RECTANGLE_SIZE,RECTANGLE_SIZE);
-            }).then(resizedRec=>{
-                return resizedMap.composite(resizedRec, temp_col*RECTANGLE_SIZE, temp_row*RECTANGLE_SIZE, [Jimp.BLEND_DESTINATION_OVER, 0.2, 0.2]);
-            }).then(compedMap=>{
-                return compedMap.write(imagePath + '/test.jpg');
-            }).then(saved=>{
-                message.reply(selectedCol + " " + selectedRow, {file : imagePath + "/test.jpg"});
-            });
-        });
+        // 선택된 좌표에 해당되는 맵 불러오기
+        message.reply(selectedRow + " " + selectedCol, {file : baseImagePath + "/CombinedMap/" + map_name + "_" + selectedRow + selectedCol + ".jpg"});
+
+
+        // 기능) 선택된 좌표를 기준으로 이미지 합친 후 메시지로 출력
+        // Jimp.read(mapPath).then(loadMap=>{
+        //     return loadMap.resize(MAP_SIZE, MAP_SIZE);
+        // }).then(resizedMap =>{
+        //     Jimp.read(baseImagePath + '/RED_RECTANGLE.png').then(rec=>{
+        //         return rec.resize(RECTANGLE_SIZE,RECTANGLE_SIZE);
+        //     }).then(resizedRec=>{
+        //         return resizedMap.composite(resizedRec, temp_col*RECTANGLE_SIZE, temp_row*RECTANGLE_SIZE, [Jimp.BLEND_DESTINATION_OVER, 0.2, 0.2]);
+        //     }).then(compedMap=>{
+        //         return compedMap.write(baseImagePath + '/test.jpg');
+        //     }).then(saved=>{
+        //         message.reply(selectedCol + " " + selectedRow, {file : baseImagePath + "/test.jpg"});
+        //     });
+        // });
+
+
+        // 기능) 좌표를 기준으로 이미지 합친 후 저장 (저장이름 : 기본이미지경로/CombinedMap/맵이름_[Row][Col].jpg)
+        // for(let cnt_coor_X=0; cnt_coor_X<map_row.length; cnt_coor_X++){
+        //     for(let cnt_coor_Y=0; cnt_coor_Y<map_row.length; cnt_coor_Y++){
+        //         let temp_coor = map_row[cnt_coor_X] + map_col[cnt_coor_Y];
+        //         if(isContain(temp_coor, except_coor)) continue;
+
+        //         let selectedRow = map_row[cnt_coor_X];
+        //         let selectedCol = map_col[cnt_coor_Y];
+        //         let mapPath = baseImagePath + '/' + map_name + '.jpg';
+                
+        //         Jimp.read(mapPath).then(loadMap=>{
+        //             return loadMap.resize(MAP_SIZE, MAP_SIZE);
+        //         }).then(resizedMap =>{
+        //             Jimp.read(baseImagePath + '/RED_RECTANGLE.png').then(rec=>{
+        //                 return rec.resize(RECTANGLE_SIZE,RECTANGLE_SIZE);
+        //             }).then(resizedRec=>{
+        //                 return resizedMap.composite(resizedRec, cnt_coor_X*RECTANGLE_SIZE, cnt_coor_Y*RECTANGLE_SIZE, [Jimp.BLEND_DESTINATION_OVER, 0.2, 0.2]);
+        //             }).then(compedMap=>{
+        //                 return compedMap.write(baseImagePath + '/CombinedMap/' + map_name + '_' + selectedRow + selectedCol + '.jpg');
+        //             });
+        //         });
+        //     }
+        // }
     }
 }
 
