@@ -107,7 +107,7 @@ module.exports = class determinePlace extends commando.Command{
         let selectedCol = map_col[temp_col];
 
         // 선택된 좌표에 해당되는 맵 불러오기
-        message.reply(selectedRow + " " + selectedCol, {file : baseImagePath + "/CombinedMap/" + map_name + "_" + selectedRow + selectedCol + ".jpg"});
+        message.reply(/*selectedRow + " " + selectedCol, */{file : baseImagePath + "/CombinedMap/" + map_name + "_" + selectedRow + selectedCol + ".jpg"});
 
 
         // 기능) 선택된 좌표를 기준으로 이미지 합친 후 메시지로 출력
